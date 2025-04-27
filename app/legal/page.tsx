@@ -1,20 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import React, { useState } from 'react';
 
-function LegalContent() {
-  const searchParams = useSearchParams();
+export default function LegalPage() {
   const [activeTab, setActiveTab] = useState('privacy');
   
-  useEffect(() => {
-    const tab = searchParams.get('tab');
-    if (tab === 'terms' || tab === 'privacy') {
-      setActiveTab(tab);
-    }
-  }, [searchParams]);
-
   return (
     <div className="container mx-auto px-6 py-16">
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">Legal Information</h1>
@@ -26,7 +16,7 @@ function LegalContent() {
             onClick={() => setActiveTab('privacy')}
             className={`px-6 py-3 text-sm font-medium ${
               activeTab === 'privacy'
-                ? 'bg-tc-blue-600 text-white'
+                ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-50'
             } rounded-l-lg border border-gray-200`}
           >
@@ -36,7 +26,7 @@ function LegalContent() {
             onClick={() => setActiveTab('terms')}
             className={`px-6 py-3 text-sm font-medium ${
               activeTab === 'terms'
-                ? 'bg-tc-blue-600 text-white'
+                ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-50'
             } rounded-r-lg border border-l-0 border-gray-200`}
           >
@@ -58,7 +48,7 @@ function LegalContent() {
                   This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
                 </p>
                 <p className="text-gray-600 mt-4">
-                  We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Privacy Policy Generator.
+                  We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.
                 </p>
               </section>
               
@@ -316,13 +306,5 @@ function LegalContent() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function LegalPage() {
-  return (
-    <Suspense fallback={<div className="container mx-auto px-6 py-16 text-center">Loading...</div>}>
-      <LegalContent />
-    </Suspense>
   );
 } 
