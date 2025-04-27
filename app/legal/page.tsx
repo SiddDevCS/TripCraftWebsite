@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function LegalPage() {
+function LegalContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState('privacy');
   
@@ -316,5 +316,13 @@ export default function LegalPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function LegalPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-6 py-16 text-center">Loading...</div>}>
+      <LegalContent />
+    </Suspense>
   );
 } 
